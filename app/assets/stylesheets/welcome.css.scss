@@ -1,0 +1,66 @@
+// Place all the styles related to the welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com
+html { 
+  background: url(https://s3.amazonaws.com/ajc-blog-files/images/splash.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+body {
+  background-color:none!important;
+}
+
+
+body {
+  font-family:tahoma;
+  font-size: 2vw;
+  margin: 0px;
+}
+.center {
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -150px;
+  margin-top: -150px;
+}
+a, a:hover {
+  padding:12px;
+  border:1px solid orange;
+  color:orange;
+  text-decoration:none;
+  font-size:24px;
+}
+.bot-center {
+  width:300px;
+  text-align:center;
+  bottom:40px;
+  z-index:1000;
+  bottom: 20px;
+  left: 50%;
+  position: relative;
+  margin-left: -150px;
+  top: 100%;
+  margin-top: -75px;
+  height:40px;
+  float:left;
+}
+.black a {
+  border:1px solid #000;
+  color:#000;
+}
+.fill-screen {
+  height:100vh;
+}
+.trans-overlay {
+  position:absolute;
+  background-color:rgba(0,0,0,.8);
+  z-index:1;
+  width:100%;
+}
+h1 {
+  font-size:4vw;
+}
