@@ -1,0 +1,874 @@
+<!--<script src="jquery.ui.touch-punch.min.js"></script>-->
+<script>
+  (function( $ ) {
+    $.widget( "custom.combobox", {
+      _create: function() {
+        this.wrapper = $( "<span>" )
+                .addClass( "custom-combobox" )
+                .insertAfter( this.element );
+
+        this.element.hide();
+        this._createAutocomplete();
+        this._createShowAllButton();
+      },
+
+      _createAutocomplete: function() {
+        var selected = this.element.children( ":selected" ),
+                value = selected.val() ? selected.text() : "";
+
+        this.input = $( "<input style='width:100%;'>" )
+                .appendTo( this.wrapper )
+                .val( value )
+                .attr( "title", "" )
+                .addClass( "custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left" )
+                .autocomplete({
+                  delay: 0,
+                  minLength: 0,
+                  source: $.proxy( this, "_source" )
+                })
+                .tooltip({
+                  tooltipClass: "ui-state-highlight"
+                });
+        this._on( this.input, {
+          autocompleteselect: function( event, ui ) {
+            ui.item.option.selected = true;
+            this._trigger( "select", event, {
+              item: ui.item.option
+            });
+            update_search();
+          },
+          autocompletechange: "_removeIfInvalid"
+        });
+      },
+
+      _createShowAllButton: function() {
+        /*
+         var input = this.input,
+         wasOpen = false;
+
+         $( "<a>" )
+         .attr( "tabIndex", -1 )
+         .attr( "title", "Show All Items" )
+         .tooltip()
+         .appendTo( this.wrapper )
+         .button({
+         icons: {
+         primary: "ui-icon-triangle-1-s"
+         },
+         text: false
+         })
+         .removeClass( "ui-corner-all" )
+         .addClass( "custom-combobox-toggle ui-corner-right" )
+         .mousedown(function() {
+         wasOpen = input.autocomplete( "widget" ).is( ":visible" );
+         })
+         .click(function() {
+         input.focus();
+
+         // Close if already visible
+         if ( wasOpen ) {
+         return;
+         }
+
+         // Pass empty string as value to search for, displaying all results
+         input.autocomplete( "search", "" );
+         });
+         */
+      },
+
+      _source: function( request, response ) {
+        var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), "i" );
+        response( this.element.children( "option" ).map(function() {
+          var text = $( this ).text();
+          if ( this.value && ( !request.term || matcher.test(text) ) )
+            return {
+              label: text,
+              value: text,
+              option: this
+            };
+        }) );
+      },
+
+      _removeIfInvalid: function( event, ui ) {
+
+        // Selected an item, nothing to do
+        if ( ui.item ) {
+          return;
+        }
+
+        // Search for a match (case-insensitive)
+        var value = this.input.val(),
+                valueLowerCase = value.toLowerCase(),
+                valid = false;
+        this.element.children( "option" ).each(function() {
+          if ( $( this ).text().toLowerCase() === valueLowerCase ) {
+            this.selected = valid = true;
+            return false;
+          }
+        });
+
+        // Found a match, nothing to do
+        if ( valid ) {
+          return;
+        }
+
+        // Remove invalid value
+        this.input
+                .val( "" )
+                .attr( "title", value + " didn't match any item" )
+                .tooltip( "open" );
+        this.element.val( "" );
+        this._delay(function() {
+          this.input.tooltip( "close" ).attr( "title", "" );
+        }, 2500 );
+        this.input.autocomplete( "instance" ).term = "";
+      },
+
+      _destroy: function() {
+        this.wrapper.remove();
+        this.element.show();
+      }
+    });
+  })( jQuery );
+</script>
+<script>
+  (function( $ ) {
+    $.widget( "custom.combobox", {
+      _create: function() {
+        this.wrapper = $( "<span>" )
+                .addClass( "custom-combobox" )
+                .insertAfter( this.element );
+
+        this.element.hide();
+        this._createAutocomplete();
+        this._createShowAllButton();
+      },
+
+      _createAutocomplete: function() {
+        var selected = this.element.children( ":selected" ),
+                value = selected.val() ? selected.text() : "";
+
+        this.input = $( "<input style='width:100%;'>" )
+                .appendTo( this.wrapper )
+                .val( value )
+                .attr( "title", "" )
+                .addClass( "custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left" )
+                .autocomplete({
+                  delay: 0,
+                  minLength: 0,
+                  source: $.proxy( this, "_source" )
+                })
+                .tooltip({
+                  tooltipClass: "ui-state-highlight"
+                });
+        this._on( this.input, {
+          autocompleteselect: function( event, ui ) {
+            ui.item.option.selected = true;
+            this._trigger( "select", event, {
+              item: ui.item.option
+            });
+            update_search();
+          },
+          autocompletechange: "_removeIfInvalid"
+        });
+      },
+
+      _createShowAllButton: function() {
+        /*
+         var input = this.input,
+         wasOpen = false;
+
+         $( "<a>" )
+         .attr( "tabIndex", -1 )
+         .attr( "title", "Show All Items" )
+         .tooltip()
+         .appendTo( this.wrapper )
+         .button({
+         icons: {
+         primary: "ui-icon-triangle-1-s"
+         },
+         text: false
+         })
+         .removeClass( "ui-corner-all" )
+         .addClass( "custom-combobox-toggle ui-corner-right" )
+         .mousedown(function() {
+         wasOpen = input.autocomplete( "widget" ).is( ":visible" );
+         })
+         .click(function() {
+         input.focus();
+
+         // Close if already visible
+         if ( wasOpen ) {
+         return;
+         }
+
+         // Pass empty string as value to search for, displaying all results
+         input.autocomplete( "search", "" );
+         });
+         */
+      },
+
+      _source: function( request, response ) {
+        var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), "i" );
+        response( this.element.children( "option" ).map(function() {
+          var text = $( this ).text();
+          if ( this.value && ( !request.term || matcher.test(text) ) )
+            return {
+              label: text,
+              value: text,
+              option: this
+            };
+        }) );
+      },
+
+      _removeIfInvalid: function( event, ui ) {
+
+        // Selected an item, nothing to do
+        if ( ui.item ) {
+          return;
+        }
+
+        // Search for a match (case-insensitive)
+        var value = this.input.val(),
+                valueLowerCase = value.toLowerCase(),
+                valid = false;
+        this.element.children( "option" ).each(function() {
+          if ( $( this ).text().toLowerCase() === valueLowerCase ) {
+            this.selected = valid = true;
+            return false;
+          }
+        });
+
+        // Found a match, nothing to do
+        if ( valid ) {
+          return;
+        }
+
+        // Remove invalid value
+        this.input
+                .val( "" )
+                .attr( "title", value + " didn't match any item" )
+                .tooltip( "open" );
+        this.element.val( "" );
+        this._delay(function() {
+          this.input.tooltip( "close" ).attr( "title", "" );
+        }, 2500 );
+        this.input.autocomplete( "instance" ).term = "";
+      },
+
+      _destroy: function() {
+        this.wrapper.remove();
+        this.element.show();
+      }
+    });
+  })( jQuery );
+</script>
+
+<!-- STYLE 1 - ASIDES -->
+<% if false then %>
+  <div style="height:100%;width:100%;overflow:hidden;">
+    <div class="off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+        <nav class="tab-bar">
+          <!--<section class="left-small">
+            <a class="left-off-canvas-toggle menu-icon" href="#"><span></span></a>
+          </section> -->
+
+          <section class="left tab-bar-section" style="text-align: center;">
+            <h1 class="title">San Diego Breweries</h1>
+          </section>
+
+          <section class="right-small">
+            <a class="right-off-canvas-toggle menu-icon" href="#"><span></span></a>
+          </section>
+        </nav>
+
+        <aside class="left-off-canvas-menu">
+          <ul class="off-canvas-list">
+            <li><label>San Diego Breweries</label></li>
+          </ul>
+
+          <div class="row">
+            <div class="small-10 large-centered columns">
+              <%#= twitterfeed(["mark_cap", "wycats", "ruralocity", "#ruby", "#rails"]) %>
+            </div>
+          </div>
+        </aside>
+
+        <aside class="right-off-canvas-menu">
+          <ul class="off-canvas-list">
+            <li><label style="color:#C00;">Options</label></li>
+            <!--<li><a href="#">Filter 1</a></li>
+            <li><a href="#">Filter 2</a></li>
+            <li><a href="#">Filter 3</a></li>
+            <li><a href="#">Slider</a></li>-->
+          </ul>
+
+          <br>
+
+          <div class="row">
+            <div class="small-10 large-centered columns">
+              <div class="ui-widget">
+                <label style="color:#C00;">Beer Style </label>
+                <select id="combobox">
+                  <option value="">Select a style..</option>
+                  <option value="Altbier">Altbier</option>
+                  <option value="American Adjunct Lager">American Adjunct Lager</option>
+                  <option value="American Amber / Red Ale">American Amber / Red Ale</option>
+                  <option value="American Amber / Red Lager">American Amber / Red Lager</option>
+                  <option value="American Barleywine">American Barleywine</option>
+                  <option value="American Black Ale">American Black Ale</option>
+                  <option value="American Blonde Ale">American Blonde Ale</option>
+                  <option value="American Brown Ale">American Brown Ale</option>
+                  <option value="American Dark Wheat Ale">American Dark Wheat Ale</option>
+                  <option value="American Double / Imperial IPA">American Double / Imperial IPA</option>
+                  <option value="American Double / Imperial Pilsner">American Double / Imperial Pilsner</option>
+                  <option value="American Double / Imperial Stout">American Double / Imperial Stout</option>
+                  <option value="American IPA">American IPA</option>
+                  <option value="American Malt Liquor">American Malt Liquor</option>
+                  <option value="American Pale Ale (APA)">American Pale Ale (APA)</option>
+                  <option value="American Pale Lager">American Pale Lager</option>
+                  <option value="American Pale Wheat Ale">American Pale Wheat Ale</option>
+                  <option value="American Porter">American Porter</option>
+                  <option value="American Stout">American Stout</option>
+                  <option value="American Strong Ale">American Strong Ale</option>
+                  <option value="American Wild Ale">American Wild Ale</option>
+                  <option value="Baltic Porter">Baltic Porter</option>
+                  <option value="Belgian Dark Ale">Belgian Dark Ale</option>
+                  <option value="Belgian IPA">Belgian IPA</option>
+                  <option value="Belgian Pale Ale">Belgian Pale Ale</option>
+                  <option value="Belgian Strong Dark Ale">Belgian Strong Dark Ale</option>
+                  <option value="Belgian Strong Pale Ale">Belgian Strong Pale Ale</option>
+                  <option value="Berliner Weissbier">Berliner Weissbier</option>
+                  <option value="Bière de Garde">Bière de Garde</option>
+                  <option value="Black & Tan">Black & Tan</option>
+                  <option value="Bock">Bock</option>
+                  <option value="California Common / Steam Beer">California Common / Steam Beer</option>
+                  <option value="Chile Beer">Chile Beer</option>
+                  <option value="Cream Ale">Cream Ale</option>
+                  <option value="Czech Pilsener">Czech Pilsener</option>
+                  <option value="Doppelbock">Doppelbock</option>
+                  <option value="Dortmunder / Export Lager">Dortmunder / Export Lager</option>
+                  <option value="Dubbel">Dubbel</option>
+                  <option value="Dunkelweizen">Dunkelweizen</option>
+                  <option value="English Barleywine">English Barleywine</option>
+                  <option value="English Bitter">English Bitter</option>
+                  <option value="English Brown Ale">English Brown Ale</option>
+                  <option value="English Dark Mild Ale">English Dark Mild Ale</option>
+                  <option value="English India Pale Ale (IPA)">English India Pale Ale (IPA)</option>
+                  <option value="English Pale Ale">English Pale Ale</option>
+                  <option value="English Pale Mild Ale">English Pale Mild Ale</option>
+                  <option value="English Porter">English Porter</option>
+                  <option value="English Stout">English Stout</option>
+                  <option value="English Strong Ale">English Strong Ale</option>
+                  <option value="Euro Dark Lager">Euro Dark Lager</option>
+                  <option value="Extra Special / Strong Bitter (ESB)">Extra Special / Strong Bitter (ESB)</option>
+                  <option value="Flanders Oud Bruin">Flanders Oud Bruin</option>
+                  <option value="Flanders Red Ale">Flanders Red Ale</option>
+                  <option value="Foreign / Export Stout">Foreign / Export Stout</option>
+                  <option value="Fruit / Vegetable Beer">Fruit / Vegetable Beer</option>
+                  <option value="German Pilsener">German Pilsener</option>
+                  <option value="Gose">Gose</option>
+                  <option value="Gueuze">Gueuze</option>
+                  <option value="Hamilton's 2nd Anniversary Ale">Hamilton's 2nd Anniversary Ale</option>
+                  <option value="Hamilton's 5th Anniversary Ale">Hamilton's 5th Anniversary Ale</option>
+                  <option value="Hefeweizen">Hefeweizen</option>
+                  <option value="Herbed / Spiced Beer">Herbed / Spiced Beer</option>
+                  <option value="Irish Dry Stout">Irish Dry Stout</option>
+                  <option value="Irish Red Ale">Irish Red Ale</option>
+                  <option value="Kellerbier / Zwickelbier">Kellerbier / Zwickelbier</option>
+                  <option value="Kölsch">Kölsch</option>
+                  <option value="Kristalweizen">Kristalweizen</option>
+                  <option value="Lambic - Fruit">Lambic - Fruit</option>
+                  <option value="Lambic - Unblended">Lambic - Unblended</option>
+                  <option value="Light Lager">Light Lager</option>
+                  <option value="Maibock / Helles Bock">Maibock / Helles Bock</option>
+                  <option value="Märzen / Oktoberfest">Märzen / Oktoberfest</option>
+                  <option value="Milk / Sweet Stout">Milk / Sweet Stout</option>
+                  <option value="Munich Dunkel Lager">Munich Dunkel Lager</option>
+                  <option value="Munich Helles Lager">Munich Helles Lager</option>
+                  <option value="Oaked Bastard">Oaked Bastard</option>
+                  <option value="Oatmeal Stout">Oatmeal Stout</option>
+                  <option value="Old Ale">Old Ale</option>
+                  <option value="Pumpkin Ale">Pumpkin Ale</option>
+                  <option value="Quadrupel (Quad)">Quadrupel (Quad)</option>
+                  <option value="Rauchbier">Rauchbier</option>
+                  <option value="Roggenbier">Roggenbier</option>
+                  <option value="Russian Imperial Stout">Russian Imperial Stout</option>
+                  <option value="Rye Beer">Rye Beer</option>
+                  <option value="Sahti">Sahti</option>
+                  <option value="Saison / Farmhouse Ale">Saison / Farmhouse Ale</option>
+                  <option value="Schwarzbier">Schwarzbier</option>
+                  <option value="Scotch Ale / Wee Heavy">Scotch Ale / Wee Heavy</option>
+                  <option value="Scottish Ale">Scottish Ale</option>
+                  <option value="Smoked Beer">Smoked Beer</option>
+                  <option value="Stone 11th Anniversary Ale">Stone 11th Anniversary Ale</option>
+                  <option value="Stone Ruination Tenth Anniversary IPA">Stone Ruination Tenth Anniversary IPA</option>
+                  <option value="Tripel">Tripel</option>
+                  <option value="Victory At Sea Imperial Coffee Porter">Victory At Sea Imperial Coffee Porter</option>
+                  <option value="Vienna Lager">Vienna Lager</option>
+                  <option value="Weizenbock">Weizenbock</option>
+                  <option value="Wheatwine">Wheatwine</option>
+                  <option value="Winter Warmer">Winter Warmer</option>
+                  <option value="Witbier">Witbier</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <br>
+
+          <div class="row">
+            <div class="small-10 large-centered columns">
+              <p>
+                <label for="amount-ibu" style="color:#C00;">IBU range:</label>
+                <input type="text" id="amount-ibu" readonly style="border:0; color:#999; font-weight:bold;">
+              </p>
+              <div id="slider-range-ibu"></div>
+            </div>
+          </div>
+          <br>
+
+          <div class="row">
+            <div class="small-10 large-centered columns">
+              <p>
+                <label for="amount-abv" style="color:#C00;">ABV range:</label>
+                <input type="text" id="amount-abv" readonly style="border:0; color:#999; font-weight:bold;">
+              </p>
+              <div id="slider-range-abv"></div>
+            </div>
+          </div>
+          <br>
+
+          <div class="row">
+            <div class="small-10 large-centered columns">
+              <h3 style="color:#C00;">Results</h3>
+              <div class="row" id="results" style="height:40vh;overflow-y: auto;color:#999;">
+                <%= render "results" %>
+              </div>
+            </div>
+          </div>
+
+
+        </aside>
+
+        <section class="main-section">
+          <div style="height:100vh;width:100vw;">
+            <div id="map-canvas"></div>
+          </div>
+        </section>
+
+        <!--<a class="exit-off-canvas"></a>-->
+
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<!-- STYLE 2 - MOBILE -->
+<div id="map-canvas" style="height:100%;width:50%;display:inline;float:left;"></div>
+<div style="height:100%;width:50%;background-color:#333;display:inline;float:left;overflow-y:auto;">
+  <div class="row">
+    <div class="small-10 large-centered columns">
+      <h1 style="text-align: center;color:#D00;">San Diego Breweries</h1>
+    </div>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="small-10 large-centered columns">
+      <div class="ui-widget">
+        <label style="color:#D00;">Beer Style </label>
+        <select id="combobox">
+          <option value="">Select a style..</option>
+          <option value="Altbier">Altbier</option>
+          <option value="American Adjunct Lager">American Adjunct Lager</option>
+          <option value="American Amber / Red Ale">American Amber / Red Ale</option>
+          <option value="American Amber / Red Lager">American Amber / Red Lager</option>
+          <option value="American Barleywine">American Barleywine</option>
+          <option value="American Black Ale">American Black Ale</option>
+          <option value="American Blonde Ale">American Blonde Ale</option>
+          <option value="American Brown Ale">American Brown Ale</option>
+          <option value="American Dark Wheat Ale">American Dark Wheat Ale</option>
+          <option value="American Double / Imperial IPA">American Double / Imperial IPA</option>
+          <option value="American Double / Imperial Pilsner">American Double / Imperial Pilsner</option>
+          <option value="American Double / Imperial Stout">American Double / Imperial Stout</option>
+          <option value="American IPA">American IPA</option>
+          <option value="American Malt Liquor">American Malt Liquor</option>
+          <option value="American Pale Ale (APA)">American Pale Ale (APA)</option>
+          <option value="American Pale Lager">American Pale Lager</option>
+          <option value="American Pale Wheat Ale">American Pale Wheat Ale</option>
+          <option value="American Porter">American Porter</option>
+          <option value="American Stout">American Stout</option>
+          <option value="American Strong Ale">American Strong Ale</option>
+          <option value="American Wild Ale">American Wild Ale</option>
+          <option value="Baltic Porter">Baltic Porter</option>
+          <option value="Belgian Dark Ale">Belgian Dark Ale</option>
+          <option value="Belgian IPA">Belgian IPA</option>
+          <option value="Belgian Pale Ale">Belgian Pale Ale</option>
+          <option value="Belgian Strong Dark Ale">Belgian Strong Dark Ale</option>
+          <option value="Belgian Strong Pale Ale">Belgian Strong Pale Ale</option>
+          <option value="Berliner Weissbier">Berliner Weissbier</option>
+          <option value="Bière de Garde">Bière de Garde</option>
+          <option value="Black & Tan">Black & Tan</option>
+          <option value="Bock">Bock</option>
+          <option value="California Common / Steam Beer">California Common / Steam Beer</option>
+          <option value="Chile Beer">Chile Beer</option>
+          <option value="Cream Ale">Cream Ale</option>
+          <option value="Czech Pilsener">Czech Pilsener</option>
+          <option value="Doppelbock">Doppelbock</option>
+          <option value="Dortmunder / Export Lager">Dortmunder / Export Lager</option>
+          <option value="Dubbel">Dubbel</option>
+          <option value="Dunkelweizen">Dunkelweizen</option>
+          <option value="English Barleywine">English Barleywine</option>
+          <option value="English Bitter">English Bitter</option>
+          <option value="English Brown Ale">English Brown Ale</option>
+          <option value="English Dark Mild Ale">English Dark Mild Ale</option>
+          <option value="English India Pale Ale (IPA)">English India Pale Ale (IPA)</option>
+          <option value="English Pale Ale">English Pale Ale</option>
+          <option value="English Pale Mild Ale">English Pale Mild Ale</option>
+          <option value="English Porter">English Porter</option>
+          <option value="English Stout">English Stout</option>
+          <option value="English Strong Ale">English Strong Ale</option>
+          <option value="Euro Dark Lager">Euro Dark Lager</option>
+          <option value="Extra Special / Strong Bitter (ESB)">Extra Special / Strong Bitter (ESB)</option>
+          <option value="Flanders Oud Bruin">Flanders Oud Bruin</option>
+          <option value="Flanders Red Ale">Flanders Red Ale</option>
+          <option value="Foreign / Export Stout">Foreign / Export Stout</option>
+          <option value="Fruit / Vegetable Beer">Fruit / Vegetable Beer</option>
+          <option value="German Pilsener">German Pilsener</option>
+          <option value="Gose">Gose</option>
+          <option value="Gueuze">Gueuze</option>
+          <option value="Hamilton's 2nd Anniversary Ale">Hamilton's 2nd Anniversary Ale</option>
+          <option value="Hamilton's 5th Anniversary Ale">Hamilton's 5th Anniversary Ale</option>
+          <option value="Hefeweizen">Hefeweizen</option>
+          <option value="Herbed / Spiced Beer">Herbed / Spiced Beer</option>
+          <option value="Irish Dry Stout">Irish Dry Stout</option>
+          <option value="Irish Red Ale">Irish Red Ale</option>
+          <option value="Kellerbier / Zwickelbier">Kellerbier / Zwickelbier</option>
+          <option value="Kölsch">Kölsch</option>
+          <option value="Kristalweizen">Kristalweizen</option>
+          <option value="Lambic - Fruit">Lambic - Fruit</option>
+          <option value="Lambic - Unblended">Lambic - Unblended</option>
+          <option value="Light Lager">Light Lager</option>
+          <option value="Maibock / Helles Bock">Maibock / Helles Bock</option>
+          <option value="Märzen / Oktoberfest">Märzen / Oktoberfest</option>
+          <option value="Milk / Sweet Stout">Milk / Sweet Stout</option>
+          <option value="Munich Dunkel Lager">Munich Dunkel Lager</option>
+          <option value="Munich Helles Lager">Munich Helles Lager</option>
+          <option value="Oaked Bastard">Oaked Bastard</option>
+          <option value="Oatmeal Stout">Oatmeal Stout</option>
+          <option value="Old Ale">Old Ale</option>
+          <option value="Pumpkin Ale">Pumpkin Ale</option>
+          <option value="Quadrupel (Quad)">Quadrupel (Quad)</option>
+          <option value="Rauchbier">Rauchbier</option>
+          <option value="Roggenbier">Roggenbier</option>
+          <option value="Russian Imperial Stout">Russian Imperial Stout</option>
+          <option value="Rye Beer">Rye Beer</option>
+          <option value="Sahti">Sahti</option>
+          <option value="Saison / Farmhouse Ale">Saison / Farmhouse Ale</option>
+          <option value="Schwarzbier">Schwarzbier</option>
+          <option value="Scotch Ale / Wee Heavy">Scotch Ale / Wee Heavy</option>
+          <option value="Scottish Ale">Scottish Ale</option>
+          <option value="Smoked Beer">Smoked Beer</option>
+          <option value="Stone 11th Anniversary Ale">Stone 11th Anniversary Ale</option>
+          <option value="Stone Ruination Tenth Anniversary IPA">Stone Ruination Tenth Anniversary IPA</option>
+          <option value="Tripel">Tripel</option>
+          <option value="Victory At Sea Imperial Coffee Porter">Victory At Sea Imperial Coffee Porter</option>
+          <option value="Vienna Lager">Vienna Lager</option>
+          <option value="Weizenbock">Weizenbock</option>
+          <option value="Wheatwine">Wheatwine</option>
+          <option value="Winter Warmer">Winter Warmer</option>
+          <option value="Witbier">Witbier</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="small-10 large-centered columns">
+      <p>
+        <label for="amount-ibu" style="color:#D00;">IBU range:</label>
+        <input type="text" id="amount-ibu" readonly style="border:0; color:#999; font-weight:bold;">
+      </p>
+      <div id="slider-range-ibu"></div>
+    </div>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="small-10 large-centered columns">
+      <p>
+        <label for="amount-abv" style="color:#D00;">ABV range:</label>
+        <input type="text" id="amount-abv" readonly style="border:0; color:#999; font-weight:bold;">
+      </p>
+      <div id="slider-range-abv"></div>
+    </div>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="small-10 large-centered columns">
+      <h3 style="color:#D00;">Results</h3>
+      <div class="row" id="results" style="height:40vh;overflow-y: auto;color:#999;">
+        <%= render "results" %>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<script>
+  $(function() {
+    $( "#combobox" ).combobox();
+  });
+</script>
+<script>
+  // The following example creates complex markers to indicate beaches near
+  // Sydney, NSW, Australia. Note that the anchor is set to
+  // (0,32) to correspond to the base of the flagpole.
+
+  var redStyles = [
+    {
+      "stylers": [
+        { "invert_lightness": true },
+        { "hue": "#ff0000" },
+        { "visibility": "simplified" },
+        { "weight": 1 },
+        { "saturation": -55 }
+      ]
+    }
+  ]
+
+  var greenStyles = [
+    {
+      "stylers": [
+        { "saturation": -57 },
+        { "visibility": "on" },
+        { "invert_lightness": true },
+        { "hue": "#f6ff00" }
+      ]
+    }
+  ]
+
+  var sd = [32.9606228,-117.0347384]
+  var mapOptions = {
+    zoom: 10,
+    center: new google.maps.LatLng(sd[0], sd[1]),
+    disableDefaultUI: true,
+  }
+  var map = new google.maps.Map(document.getElementById('map-canvas'),
+          mapOptions);
+
+
+  var styledMapOptions = {
+    name: 'San Diego Breweries'
+  };
+
+  var usRoadMapType = new google.maps.StyledMapType(
+          redStyles, styledMapOptions);
+
+  map.mapTypes.set('sd_breweries', usRoadMapType);
+  map.setMapTypeId('sd_breweries');
+
+  function initialize() {
+
+//    setMarkers(map, breweries);
+    addMarkers(map, breweries);
+  }
+
+  /**
+   * Data for the markers consisting of a name, a LatLng and a zIndex for
+   * the order in which these markers should display on top of each
+   * other.
+   */
+
+    // Add a marker to the map and push to the array.
+
+  var markers = []
+
+  function addMarkers(map, breweries) {
+
+    var icon = { url: '/assets/hop_marker_02.png' }
+
+    for (var i = 0; i < breweries.length; i++) {
+      var brewery = breweries[i];
+      var title = brewery[0];
+      var position = new google.maps.LatLng(brewery[1], brewery[2]);
+      var marker = new google.maps.Marker({
+        position: position,
+        map: map,
+        icon: icon,
+        title: title,
+      });
+      markers.push(marker);
+    }
+  }
+
+  var breweries = [
+    ['AleSmith Brewing Company ', 32.892659, -117.144740,0],
+    ['The Lost Abbey ', 33.141091, -117.149266,0],
+    ['Alpine Beer Company ', 32.835533, -116.762912,0],
+    ['Societe Brewing Co. ', 32.834125, -117.146407,0],
+    ['Modern Times Beer ', 32.754445, -117.206226,0],
+    ['Port Brewing ', 33.140857,-117.149277,0],
+    ['Toolbox Brewing Company ', 33.137036, -117.226901,0],
+    ['Barrel Harbor Brewing ', 33.148859, -117.220661,0],
+    ['Council Brewing Company ', 32.834790, -117.154514,0],
+    ['Stone Brewing Co. ', 33.116218, -117.119899,0],
+    ['Bagby Beer Company ', 33.189492, -117.374309,0],
+    ['Green Flash Brewing Co. ', 32.907294, -117.177827,0],
+    ['Ballast Point Brewing Company ', 32.898823, -117.110926,0],
+    ['Pizza Port Solana Beach ', 32.993132, -117.272257,0],
+    ['Pizza Port Carlsbad ', 33.159818, -117.347847,0],
+    ['Pizza Port Ocean Beach ', 32.748024,-117.250296,0],
+    ['Pizza Port Bressi Ranch ', 33.128427,-117.250021,0],
+    ['Intergalactic Brewing Co. ', 32.898896, -117.120662,0],
+    ['Monkey Paw Pub & Brewery ', 32.714106, -117.149329,0],
+    ['Benchmark Brewing ', 32.787531, -117.102110,0],
+    ['Rip Current Brewing ', 33.143005, -117.192572,0],
+    ['Belching Beaver Brewery ', 33.145236, -117.228766,0],
+    ['Latitude 33° Brewing Company ', 33.136473, -117.224528,0],
+    ['Mike Hess Brewing ', 32.755400, -117.128891,0],
+    ['The Beer Company ', 32.716145, -117.159117,0],
+    ['Blind Lady Ale House & Automatic Brewing Co. ', 32.763751, -117.120343,0],
+    ['Coronado Brewing Company ', 32.698048, -117.173239,0],
+    ['Acoustic Ales Brewing Experiment ', 32.742454, -117.183628,0],
+    ['Rock Bottom Restaurant and Brewery ', 32.712716, -117.160882,0],
+    ['Urbn St. Brewing Co. ', 32.795751, -116.962827,0],
+    ['Back Street Brewery ', 33.200310, -117.244752,0],
+    ['Legacy Brewing Co. ', 33.215669, -117.350798,0],
+    ['Culture Brewing Co. ', 32.991868, -117.270581,0],
+    ['Amplified Ale Works ', 32.791758, -117.254474,0],
+    ['Offbeat Brewing Company ', 33.108656, -117.117094,0],
+    ['Prohibition Brewing Company ', 33.230539, -117.226668,0],
+    ['2kids Brewing Company ', 32.896730, -117.137308,0],
+    ['Iron Fist Brewing Company ', 33.145598, -117.238685,0],
+    ['San Diego Brewing Co. ', 32.792359,-117.09895,0],
+    ['Mother Earth Brew Co. ', 33.185073,-117.2313375,0],
+    ['Pacific Brewing Company ', 32.896688,-117.137573,0],
+    ['Butcher\'s Brewing ', 32.896688,-117.137573,0],
+    ['El Cajon Brewing Company ', 32.883642,-117.171767,0],
+    ['Rough Draft Brewing Company ', 32.883642,-117.171767,0],
+    ['Mission Brewery ', 32.707138,-117.151511,0],
+    ['ChuckAlek Independent Brewers ', 33.027674,-116.889251,0],
+    ['Aztec Brewing Company ', 33.149676,-117.229947,0],
+    ['BNS Brewing & Distilling Co. ', 32.846453,-116.958367,0],
+    ['Saint Archer Brewing Co. ', 32.880398,-117.163354,0],
+    ['Groundswell Brewing Company ', 32.78903,-117.099817,0],
+    ['Lightning Brewery', 32.935596,-117.043484,0],
+  ];
+
+  function setMarkers(map, locations) {
+    // Add markers to the map
+
+    // Marker sizes are expressed as a Size of X,Y
+    // where the origin of the image (0,0) is located
+    // in the top left of the image.
+
+//        // Origins, anchor positions and coordinates of the marker
+//        // increase in the X direction to the right and in
+//        // the Y direction down.
+    var image = {
+//          url: '/assets/hop_marker_01.png',
+      url: '/assets/hop_marker_02.png',
+    }
+//          // This marker is 20 pixels wide by 32 pixels tall.
+//          size: new google.maps.Size(20, 32),
+//          // The origin for this image is 0,0.
+//          origin: new google.maps.Point(0,0),
+//          // The anchor for this image is the base of the flagpole at 0,32.
+//          anchor: new google.maps.Point(0, 32)
+//        };
+//        // Shapes define the clickable region of the icon.
+//        // The type defines an HTML &lt;area&gt; element 'poly' which
+//        // traces out a polygon as a series of X,Y points. The final
+//        // coordinate closes the poly by connecting to the first
+//        // coordinate.
+//        var shape = {
+//          coords: [1, 1, 1, 20, 18, 20, 18 , 1],
+//          type: 'poly'
+//        };
+    for (var i = 0; i < locations.length; i++) {
+      var beach = locations[i];
+      var myLatLng = new google.maps.LatLng(beach[1], beach[2]);
+      var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        icon: image,
+        //shape: shape,
+        title: beach[0],
+      });
+    }
+  }
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+
+  // Sets the map on all markers in the array.
+  function setAllMap(map) {
+    for (var i = 0; i < markers.length; i++) {
+      markers[i].setMap(map);
+    }
+  }
+  function clearMarkers() {
+    setAllMap(null);
+  }
+
+</script>
+<script>
+  var breweries_2 = [];
+  function update_search(){
+    var data = {
+      style: $("#combobox").val(),
+      ibu: $("#slider-range-ibu").slider("values"),
+      abv: $("#slider-range-abv").slider("values")
+    }
+
+    $.ajax({
+      url: "search",
+      data: data,
+      error: function() {
+        console.log("DONE GOOFED");
+      },
+      success: function(data) {
+        $("#results").html(data);
+      }
+    });
+  }
+
+  $(function() {
+    $( "#slider-range-ibu" ).slider({
+      range: true,
+      min: 0,
+      max: 100,
+      values: [ 0, 100 ],
+      slide: function( event, ui ) {
+        if( ui.values[ 1 ]*1 >= 100 )
+          ui.values[ 1 ] = "100+";
+        $( "#amount-ibu" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+        //console.log("Modified IBU! Need to update search...");
+        //update_search();
+      },
+      stop: update_search
+    });
+    $( "#amount-ibu" ).val( $( "#slider-range-ibu" ).slider( "values", 0 ) +
+            " - " + $( "#slider-range-ibu" ).slider( "values", 1 ) + "+" );
+  });
+  $(function() {
+    $( "#slider-range-abv" ).slider({
+      range: true,
+      min: 0,
+      max: 20,
+      values: [ 0, 20 ],
+      slide: function( event, ui ) {
+        if( ui.values[ 1 ]*1 >= 20 )
+          ui.values[ 1 ] = "20+";
+        $( "#amount-abv" ).val( ui.values[ 0 ] + "% - " + ui.values[ 1 ] + "%");
+      },
+      stop: update_search
+    });
+    $( "#amount-abv" ).val( $( "#slider-range-abv" ).slider( "values", 0 ) +
+            "% - " + $( "#slider-range-abv" ).slider( "values", 1 ) + "+%" );
+  });
+</script>

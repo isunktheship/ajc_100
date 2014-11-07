@@ -1,0 +1,8 @@
+<% @breweries.each do |row| %>
+  <%= row[0] %> || <%= row[3]%><br>
+<% end %>
+<%= javascript_tag do %>
+  clearMarkers();
+  breweries_2 = <%= @breweries_json %>;
+  addMarkers(map, breweries_2);
+<% end %>
