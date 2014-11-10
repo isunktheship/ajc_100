@@ -43,4 +43,6 @@ gem 'spring',        group: :development
 # AJC VISUAL GEMS
 gem 'foundation-rails'
 gem 'tzinfo-data'
-gem 'twitterfeed'
+#gem 'twitterfeed'
+gem 'twitter'
+

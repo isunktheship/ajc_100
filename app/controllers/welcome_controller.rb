@@ -1,8 +1,41 @@
+require 'twitter'
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
+
 class WelcomeController < ApplicationController
 
   def asides
     off_canvas_test
   end
+
+
+  def twitter_01
+    #config = {
+    #    :consumer_key    => "xSxJYTrUl4cVPeM4Niw59TLwU",
+    #    :consumer_secret => "o46vkjbt4Kew9BsiH91nuvw1Um5qwwMdKTP5ZFqFCFb9jyfs3g",
+    #}
+
+
+    client = Twitter::Streaming::Client.new do |config|
+      config.consumer_key        = "xSxJYTrUl4cVPeM4Niw59TLwU"
+      config.consumer_secret     = "o46vkjbt4Kew9BsiH91nuvw1Um5qwwMdKTP5ZFqFCFb9jyfs3g"
+      config.access_token        = "15424147-QcoVUD6afTIyGamOw32duraYxSdlaj3MtnNZQwC93"
+      config.access_token_secret = "X2lTKShnUDaCo6mKzWoKJMCyrn2ST4PRST86a6os3MoOD"
+    end
+
+    #client = Twitter::REST::Client.new(config)
+    #client.user("isunktheship")
+
+    topics = ["beer", "mead"]
+    users = ["StoneBrewingCo"]
+    client.filter()
+    client.filter(:track => topics.join(",")) do |object|
+      puts object.text if object.is_a?(Twitter::Tweet)
+    end
+
+    #Twitter.user_timeline("StoneBrewingCo")
+
+  end
+
 
   def search
     style = params[:style] != "" ? params[:style] : ""
@@ -10,6 +43,9 @@ class WelcomeController < ApplicationController
     ibu_high = params[:ibu][1] != "" ? params[:ibu][1] : 500
     abv_low = params[:abv][0] != "" ? params[:abv][0] : 0
     abv_high = params[:abv][1] != "" ? params[:abv][1] : 500
+
+    ibu_high = 500 if ibu_high.to_i == 100
+    abv_high = 500 if abv_high.to_i == 20
 
     @results = Brewery.joins(:beers).
         where("beers.style like '%#{style}%'").

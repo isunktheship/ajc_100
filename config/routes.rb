@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   get '1' => 'welcome#off_canvas_test'
   get '2' => 'welcome#asides'
+  get '3' => 'welcome#twitter_01'
   get 'search' => 'welcome#search'
 
   resources :beers
