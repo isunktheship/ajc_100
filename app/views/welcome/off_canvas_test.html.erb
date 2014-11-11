@@ -264,358 +264,173 @@
   })( jQuery );
 </script>
 
-<!-- STYLE 1 - ASIDES -->
-<% if false then %>
-  <div style="height:100%;width:100%;overflow:hidden;">
-    <div class="off-canvas-wrap" data-offcanvas>
-      <div class="inner-wrap">
-        <nav class="tab-bar">
-          <!--<section class="left-small">
-            <a class="left-off-canvas-toggle menu-icon" href="#"><span></span></a>
-          </section> -->
-
-          <section class="left tab-bar-section" style="text-align: center;">
-            <h1 class="title">San Diego Breweries</h1>
-          </section>
-
-          <section class="right-small">
-            <a class="right-off-canvas-toggle menu-icon" href="#"><span></span></a>
-          </section>
-        </nav>
-
-        <aside class="left-off-canvas-menu">
-          <ul class="off-canvas-list">
-            <li><label>San Diego Breweries</label></li>
-          </ul>
-
-          <div class="row">
-            <div class="small-10 large-centered columns">
-              <%#= twitterfeed(["mark_cap", "wycats", "ruralocity", "#ruby", "#rails"]) %>
-            </div>
-          </div>
-        </aside>
-
-        <aside class="right-off-canvas-menu">
-          <ul class="off-canvas-list">
-            <li><label style="color:#C00;">Options</label></li>
-            <!--<li><a href="#">Filter 1</a></li>
-            <li><a href="#">Filter 2</a></li>
-            <li><a href="#">Filter 3</a></li>
-            <li><a href="#">Slider</a></li>-->
-          </ul>
-
-          <br>
-
-          <div class="row">
-            <div class="small-10 large-centered columns">
-              <div class="ui-widget">
-                <label style="color:#C00;">Beer Style </label>
-                <select id="combobox">
-                  <option value="">Select a style..</option>
-                  <option value="Altbier">Altbier</option>
-                  <option value="American Adjunct Lager">American Adjunct Lager</option>
-                  <option value="American Amber / Red Ale">American Amber / Red Ale</option>
-                  <option value="American Amber / Red Lager">American Amber / Red Lager</option>
-                  <option value="American Barleywine">American Barleywine</option>
-                  <option value="American Black Ale">American Black Ale</option>
-                  <option value="American Blonde Ale">American Blonde Ale</option>
-                  <option value="American Brown Ale">American Brown Ale</option>
-                  <option value="American Dark Wheat Ale">American Dark Wheat Ale</option>
-                  <option value="American Double / Imperial IPA">American Double / Imperial IPA</option>
-                  <option value="American Double / Imperial Pilsner">American Double / Imperial Pilsner</option>
-                  <option value="American Double / Imperial Stout">American Double / Imperial Stout</option>
-                  <option value="American IPA">American IPA</option>
-                  <option value="American Malt Liquor">American Malt Liquor</option>
-                  <option value="American Pale Ale (APA)">American Pale Ale (APA)</option>
-                  <option value="American Pale Lager">American Pale Lager</option>
-                  <option value="American Pale Wheat Ale">American Pale Wheat Ale</option>
-                  <option value="American Porter">American Porter</option>
-                  <option value="American Stout">American Stout</option>
-                  <option value="American Strong Ale">American Strong Ale</option>
-                  <option value="American Wild Ale">American Wild Ale</option>
-                  <option value="Baltic Porter">Baltic Porter</option>
-                  <option value="Belgian Dark Ale">Belgian Dark Ale</option>
-                  <option value="Belgian IPA">Belgian IPA</option>
-                  <option value="Belgian Pale Ale">Belgian Pale Ale</option>
-                  <option value="Belgian Strong Dark Ale">Belgian Strong Dark Ale</option>
-                  <option value="Belgian Strong Pale Ale">Belgian Strong Pale Ale</option>
-                  <option value="Berliner Weissbier">Berliner Weissbier</option>
-                  <option value="Bière de Garde">Bière de Garde</option>
-                  <option value="Black & Tan">Black & Tan</option>
-                  <option value="Bock">Bock</option>
-                  <option value="California Common / Steam Beer">California Common / Steam Beer</option>
-                  <option value="Chile Beer">Chile Beer</option>
-                  <option value="Cream Ale">Cream Ale</option>
-                  <option value="Czech Pilsener">Czech Pilsener</option>
-                  <option value="Doppelbock">Doppelbock</option>
-                  <option value="Dortmunder / Export Lager">Dortmunder / Export Lager</option>
-                  <option value="Dubbel">Dubbel</option>
-                  <option value="Dunkelweizen">Dunkelweizen</option>
-                  <option value="English Barleywine">English Barleywine</option>
-                  <option value="English Bitter">English Bitter</option>
-                  <option value="English Brown Ale">English Brown Ale</option>
-                  <option value="English Dark Mild Ale">English Dark Mild Ale</option>
-                  <option value="English India Pale Ale (IPA)">English India Pale Ale (IPA)</option>
-                  <option value="English Pale Ale">English Pale Ale</option>
-                  <option value="English Pale Mild Ale">English Pale Mild Ale</option>
-                  <option value="English Porter">English Porter</option>
-                  <option value="English Stout">English Stout</option>
-                  <option value="English Strong Ale">English Strong Ale</option>
-                  <option value="Euro Dark Lager">Euro Dark Lager</option>
-                  <option value="Extra Special / Strong Bitter (ESB)">Extra Special / Strong Bitter (ESB)</option>
-                  <option value="Flanders Oud Bruin">Flanders Oud Bruin</option>
-                  <option value="Flanders Red Ale">Flanders Red Ale</option>
-                  <option value="Foreign / Export Stout">Foreign / Export Stout</option>
-                  <option value="Fruit / Vegetable Beer">Fruit / Vegetable Beer</option>
-                  <option value="German Pilsener">German Pilsener</option>
-                  <option value="Gose">Gose</option>
-                  <option value="Gueuze">Gueuze</option>
-                  <option value="Hamilton's 2nd Anniversary Ale">Hamilton's 2nd Anniversary Ale</option>
-                  <option value="Hamilton's 5th Anniversary Ale">Hamilton's 5th Anniversary Ale</option>
-                  <option value="Hefeweizen">Hefeweizen</option>
-                  <option value="Herbed / Spiced Beer">Herbed / Spiced Beer</option>
-                  <option value="Irish Dry Stout">Irish Dry Stout</option>
-                  <option value="Irish Red Ale">Irish Red Ale</option>
-                  <option value="Kellerbier / Zwickelbier">Kellerbier / Zwickelbier</option>
-                  <option value="Kölsch">Kölsch</option>
-                  <option value="Kristalweizen">Kristalweizen</option>
-                  <option value="Lambic - Fruit">Lambic - Fruit</option>
-                  <option value="Lambic - Unblended">Lambic - Unblended</option>
-                  <option value="Light Lager">Light Lager</option>
-                  <option value="Maibock / Helles Bock">Maibock / Helles Bock</option>
-                  <option value="Märzen / Oktoberfest">Märzen / Oktoberfest</option>
-                  <option value="Milk / Sweet Stout">Milk / Sweet Stout</option>
-                  <option value="Munich Dunkel Lager">Munich Dunkel Lager</option>
-                  <option value="Munich Helles Lager">Munich Helles Lager</option>
-                  <option value="Oaked Bastard">Oaked Bastard</option>
-                  <option value="Oatmeal Stout">Oatmeal Stout</option>
-                  <option value="Old Ale">Old Ale</option>
-                  <option value="Pumpkin Ale">Pumpkin Ale</option>
-                  <option value="Quadrupel (Quad)">Quadrupel (Quad)</option>
-                  <option value="Rauchbier">Rauchbier</option>
-                  <option value="Roggenbier">Roggenbier</option>
-                  <option value="Russian Imperial Stout">Russian Imperial Stout</option>
-                  <option value="Rye Beer">Rye Beer</option>
-                  <option value="Sahti">Sahti</option>
-                  <option value="Saison / Farmhouse Ale">Saison / Farmhouse Ale</option>
-                  <option value="Schwarzbier">Schwarzbier</option>
-                  <option value="Scotch Ale / Wee Heavy">Scotch Ale / Wee Heavy</option>
-                  <option value="Scottish Ale">Scottish Ale</option>
-                  <option value="Smoked Beer">Smoked Beer</option>
-                  <option value="Stone 11th Anniversary Ale">Stone 11th Anniversary Ale</option>
-                  <option value="Stone Ruination Tenth Anniversary IPA">Stone Ruination Tenth Anniversary IPA</option>
-                  <option value="Tripel">Tripel</option>
-                  <option value="Victory At Sea Imperial Coffee Porter">Victory At Sea Imperial Coffee Porter</option>
-                  <option value="Vienna Lager">Vienna Lager</option>
-                  <option value="Weizenbock">Weizenbock</option>
-                  <option value="Wheatwine">Wheatwine</option>
-                  <option value="Winter Warmer">Winter Warmer</option>
-                  <option value="Witbier">Witbier</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <br>
-
-          <div class="row">
-            <div class="small-10 large-centered columns">
-              <p>
-                <label for="amount-ibu" style="color:#C00;">IBU range:</label>
-                <input type="text" id="amount-ibu" readonly style="border:0; color:#999; font-weight:bold;">
-              </p>
-              <div id="slider-range-ibu"></div>
-            </div>
-          </div>
-          <br>
-
-          <div class="row">
-            <div class="small-10 large-centered columns">
-              <p>
-                <label for="amount-abv" style="color:#C00;">ABV range:</label>
-                <input type="text" id="amount-abv" readonly style="border:0; color:#999; font-weight:bold;">
-              </p>
-              <div id="slider-range-abv"></div>
-            </div>
-          </div>
-          <br>
-
-          <div class="row">
-            <div class="small-10 large-centered columns">
-              <h3 style="color:#C00;">Results</h3>
-              <div class="row" id="results" style="height:40vh;overflow-y: auto;color:#999;">
-                <%= render "results" %>
-              </div>
-            </div>
-          </div>
-
-
-        </aside>
-
-        <section class="main-section">
-          <div style="height:100vh;width:100vw;">
-            <div id="map-canvas"></div>
-          </div>
-        </section>
-
-        <!--<a class="exit-off-canvas"></a>-->
-
-      </div>
-    </div>
-  </div>
-<% end %>
-
 <!-- STYLE 2 - MOBILE -->
-<div id="map-canvas" style="height:100%;width:50%;display:inline;float:left;"></div>
-<div style="height:100%;width:50%;background-color:#333;display:inline;float:left;overflow-y:auto;">
-  <div class="row">
-    <div class="small-10 large-centered columns">
-      <h1 style="text-align: center;color:#D00;">San Diego Breweries</h1>
-    </div>
-  </div>
-  <br>
-
-  <div class="row">
-    <div class="small-10 large-centered columns">
-      <div class="ui-widget">
-        <label style="color:#D00;">Beer Style </label>
-        <select id="combobox">
-          <option value="">Select a style..</option>
-          <option value="Altbier">Altbier</option>
-          <option value="American Adjunct Lager">American Adjunct Lager</option>
-          <option value="American Amber / Red Ale">American Amber / Red Ale</option>
-          <option value="American Amber / Red Lager">American Amber / Red Lager</option>
-          <option value="American Barleywine">American Barleywine</option>
-          <option value="American Black Ale">American Black Ale</option>
-          <option value="American Blonde Ale">American Blonde Ale</option>
-          <option value="American Brown Ale">American Brown Ale</option>
-          <option value="American Dark Wheat Ale">American Dark Wheat Ale</option>
-          <option value="American Double / Imperial IPA">American Double / Imperial IPA</option>
-          <option value="American Double / Imperial Pilsner">American Double / Imperial Pilsner</option>
-          <option value="American Double / Imperial Stout">American Double / Imperial Stout</option>
-          <option value="American IPA">American IPA</option>
-          <option value="American Malt Liquor">American Malt Liquor</option>
-          <option value="American Pale Ale (APA)">American Pale Ale (APA)</option>
-          <option value="American Pale Lager">American Pale Lager</option>
-          <option value="American Pale Wheat Ale">American Pale Wheat Ale</option>
-          <option value="American Porter">American Porter</option>
-          <option value="American Stout">American Stout</option>
-          <option value="American Strong Ale">American Strong Ale</option>
-          <option value="American Wild Ale">American Wild Ale</option>
-          <option value="Baltic Porter">Baltic Porter</option>
-          <option value="Belgian Dark Ale">Belgian Dark Ale</option>
-          <option value="Belgian IPA">Belgian IPA</option>
-          <option value="Belgian Pale Ale">Belgian Pale Ale</option>
-          <option value="Belgian Strong Dark Ale">Belgian Strong Dark Ale</option>
-          <option value="Belgian Strong Pale Ale">Belgian Strong Pale Ale</option>
-          <option value="Berliner Weissbier">Berliner Weissbier</option>
-          <option value="Bière de Garde">Bière de Garde</option>
-          <option value="Black & Tan">Black & Tan</option>
-          <option value="Bock">Bock</option>
-          <option value="California Common / Steam Beer">California Common / Steam Beer</option>
-          <option value="Chile Beer">Chile Beer</option>
-          <option value="Cream Ale">Cream Ale</option>
-          <option value="Czech Pilsener">Czech Pilsener</option>
-          <option value="Doppelbock">Doppelbock</option>
-          <option value="Dortmunder / Export Lager">Dortmunder / Export Lager</option>
-          <option value="Dubbel">Dubbel</option>
-          <option value="Dunkelweizen">Dunkelweizen</option>
-          <option value="English Barleywine">English Barleywine</option>
-          <option value="English Bitter">English Bitter</option>
-          <option value="English Brown Ale">English Brown Ale</option>
-          <option value="English Dark Mild Ale">English Dark Mild Ale</option>
-          <option value="English India Pale Ale (IPA)">English India Pale Ale (IPA)</option>
-          <option value="English Pale Ale">English Pale Ale</option>
-          <option value="English Pale Mild Ale">English Pale Mild Ale</option>
-          <option value="English Porter">English Porter</option>
-          <option value="English Stout">English Stout</option>
-          <option value="English Strong Ale">English Strong Ale</option>
-          <option value="Euro Dark Lager">Euro Dark Lager</option>
-          <option value="Extra Special / Strong Bitter (ESB)">Extra Special / Strong Bitter (ESB)</option>
-          <option value="Flanders Oud Bruin">Flanders Oud Bruin</option>
-          <option value="Flanders Red Ale">Flanders Red Ale</option>
-          <option value="Foreign / Export Stout">Foreign / Export Stout</option>
-          <option value="Fruit / Vegetable Beer">Fruit / Vegetable Beer</option>
-          <option value="German Pilsener">German Pilsener</option>
-          <option value="Gose">Gose</option>
-          <option value="Gueuze">Gueuze</option>
-          <option value="Hamilton's 2nd Anniversary Ale">Hamilton's 2nd Anniversary Ale</option>
-          <option value="Hamilton's 5th Anniversary Ale">Hamilton's 5th Anniversary Ale</option>
-          <option value="Hefeweizen">Hefeweizen</option>
-          <option value="Herbed / Spiced Beer">Herbed / Spiced Beer</option>
-          <option value="Irish Dry Stout">Irish Dry Stout</option>
-          <option value="Irish Red Ale">Irish Red Ale</option>
-          <option value="Kellerbier / Zwickelbier">Kellerbier / Zwickelbier</option>
-          <option value="Kölsch">Kölsch</option>
-          <option value="Kristalweizen">Kristalweizen</option>
-          <option value="Lambic - Fruit">Lambic - Fruit</option>
-          <option value="Lambic - Unblended">Lambic - Unblended</option>
-          <option value="Light Lager">Light Lager</option>
-          <option value="Maibock / Helles Bock">Maibock / Helles Bock</option>
-          <option value="Märzen / Oktoberfest">Märzen / Oktoberfest</option>
-          <option value="Milk / Sweet Stout">Milk / Sweet Stout</option>
-          <option value="Munich Dunkel Lager">Munich Dunkel Lager</option>
-          <option value="Munich Helles Lager">Munich Helles Lager</option>
-          <option value="Oaked Bastard">Oaked Bastard</option>
-          <option value="Oatmeal Stout">Oatmeal Stout</option>
-          <option value="Old Ale">Old Ale</option>
-          <option value="Pumpkin Ale">Pumpkin Ale</option>
-          <option value="Quadrupel (Quad)">Quadrupel (Quad)</option>
-          <option value="Rauchbier">Rauchbier</option>
-          <option value="Roggenbier">Roggenbier</option>
-          <option value="Russian Imperial Stout">Russian Imperial Stout</option>
-          <option value="Rye Beer">Rye Beer</option>
-          <option value="Sahti">Sahti</option>
-          <option value="Saison / Farmhouse Ale">Saison / Farmhouse Ale</option>
-          <option value="Schwarzbier">Schwarzbier</option>
-          <option value="Scotch Ale / Wee Heavy">Scotch Ale / Wee Heavy</option>
-          <option value="Scottish Ale">Scottish Ale</option>
-          <option value="Smoked Beer">Smoked Beer</option>
-          <option value="Stone 11th Anniversary Ale">Stone 11th Anniversary Ale</option>
-          <option value="Stone Ruination Tenth Anniversary IPA">Stone Ruination Tenth Anniversary IPA</option>
-          <option value="Tripel">Tripel</option>
-          <option value="Victory At Sea Imperial Coffee Porter">Victory At Sea Imperial Coffee Porter</option>
-          <option value="Vienna Lager">Vienna Lager</option>
-          <option value="Weizenbock">Weizenbock</option>
-          <option value="Wheatwine">Wheatwine</option>
-          <option value="Winter Warmer">Winter Warmer</option>
-          <option value="Witbier">Witbier</option>
-        </select>
+<div id="1" style="height:100vh;width:100%;">
+  <div id="map-canvas" style="height:100vh;width:50%;display:inline;float:left;"></div>
+  <div style="height:100vh;width:50%;background-color:#333;display:inline;float:left;overflow-y:auto;">
+    <div class="row">
+      <div class="small-10 large-centered columns">
+        <h1 style="text-align: center;color:#D00;">San Diego Breweries</h1>
       </div>
     </div>
-  </div>
-  <br>
+    <br>
 
-  <div class="row">
-    <div class="small-10 large-centered columns">
-      <p>
-        <label for="amount-ibu" style="color:#D00;">IBU range:</label>
-        <input type="text" id="amount-ibu" readonly style="border:0; color:#999; font-weight:bold;">
-      </p>
-      <div id="slider-range-ibu"></div>
-    </div>
-  </div>
-  <br>
-
-  <div class="row">
-    <div class="small-10 large-centered columns">
-      <p>
-        <label for="amount-abv" style="color:#D00;">ABV range:</label>
-        <input type="text" id="amount-abv" readonly style="border:0; color:#999; font-weight:bold;">
-      </p>
-      <div id="slider-range-abv"></div>
-    </div>
-  </div>
-  <br>
-
-  <div class="row">
-    <div class="small-10 large-centered columns">
-      <h3 style="color:#D00;">Results</h3>
-      <div class="row" id="results" style="height:40vh;overflow-y: auto;color:#999;">
-        <%= render "results" %>
+    <div class="row">
+      <div class="small-10 large-centered columns">
+        <div class="ui-widget">
+          <label style="color:#D00;">Beer Style </label>
+          <select id="combobox">
+            <option value="">Select a style..</option>
+            <option value="Altbier">Altbier</option>
+            <option value="American Adjunct Lager">American Adjunct Lager</option>
+            <option value="American Amber / Red Ale">American Amber / Red Ale</option>
+            <option value="American Amber / Red Lager">American Amber / Red Lager</option>
+            <option value="American Barleywine">American Barleywine</option>
+            <option value="American Black Ale">American Black Ale</option>
+            <option value="American Blonde Ale">American Blonde Ale</option>
+            <option value="American Brown Ale">American Brown Ale</option>
+            <option value="American Dark Wheat Ale">American Dark Wheat Ale</option>
+            <option value="American Double / Imperial IPA">American Double / Imperial IPA</option>
+            <option value="American Double / Imperial Pilsner">American Double / Imperial Pilsner</option>
+            <option value="American Double / Imperial Stout">American Double / Imperial Stout</option>
+            <option value="American IPA">American IPA</option>
+            <option value="American Malt Liquor">American Malt Liquor</option>
+            <option value="American Pale Ale (APA)">American Pale Ale (APA)</option>
+            <option value="American Pale Lager">American Pale Lager</option>
+            <option value="American Pale Wheat Ale">American Pale Wheat Ale</option>
+            <option value="American Porter">American Porter</option>
+            <option value="American Stout">American Stout</option>
+            <option value="American Strong Ale">American Strong Ale</option>
+            <option value="American Wild Ale">American Wild Ale</option>
+            <option value="Baltic Porter">Baltic Porter</option>
+            <option value="Belgian Dark Ale">Belgian Dark Ale</option>
+            <option value="Belgian IPA">Belgian IPA</option>
+            <option value="Belgian Pale Ale">Belgian Pale Ale</option>
+            <option value="Belgian Strong Dark Ale">Belgian Strong Dark Ale</option>
+            <option value="Belgian Strong Pale Ale">Belgian Strong Pale Ale</option>
+            <option value="Berliner Weissbier">Berliner Weissbier</option>
+            <option value="Bière de Garde">Bière de Garde</option>
+            <option value="Black & Tan">Black & Tan</option>
+            <option value="Bock">Bock</option>
+            <option value="California Common / Steam Beer">California Common / Steam Beer</option>
+            <option value="Chile Beer">Chile Beer</option>
+            <option value="Cream Ale">Cream Ale</option>
+            <option value="Czech Pilsener">Czech Pilsener</option>
+            <option value="Doppelbock">Doppelbock</option>
+            <option value="Dortmunder / Export Lager">Dortmunder / Export Lager</option>
+            <option value="Dubbel">Dubbel</option>
+            <option value="Dunkelweizen">Dunkelweizen</option>
+            <option value="English Barleywine">English Barleywine</option>
+            <option value="English Bitter">English Bitter</option>
+            <option value="English Brown Ale">English Brown Ale</option>
+            <option value="English Dark Mild Ale">English Dark Mild Ale</option>
+            <option value="English India Pale Ale (IPA)">English India Pale Ale (IPA)</option>
+            <option value="English Pale Ale">English Pale Ale</option>
+            <option value="English Pale Mild Ale">English Pale Mild Ale</option>
+            <option value="English Porter">English Porter</option>
+            <option value="English Stout">English Stout</option>
+            <option value="English Strong Ale">English Strong Ale</option>
+            <option value="Euro Dark Lager">Euro Dark Lager</option>
+            <option value="Extra Special / Strong Bitter (ESB)">Extra Special / Strong Bitter (ESB)</option>
+            <option value="Flanders Oud Bruin">Flanders Oud Bruin</option>
+            <option value="Flanders Red Ale">Flanders Red Ale</option>
+            <option value="Foreign / Export Stout">Foreign / Export Stout</option>
+            <option value="Fruit / Vegetable Beer">Fruit / Vegetable Beer</option>
+            <option value="German Pilsener">German Pilsener</option>
+            <option value="Gose">Gose</option>
+            <option value="Gueuze">Gueuze</option>
+            <option value="Hamilton's 2nd Anniversary Ale">Hamilton's 2nd Anniversary Ale</option>
+            <option value="Hamilton's 5th Anniversary Ale">Hamilton's 5th Anniversary Ale</option>
+            <option value="Hefeweizen">Hefeweizen</option>
+            <option value="Herbed / Spiced Beer">Herbed / Spiced Beer</option>
+            <option value="Irish Dry Stout">Irish Dry Stout</option>
+            <option value="Irish Red Ale">Irish Red Ale</option>
+            <option value="Kellerbier / Zwickelbier">Kellerbier / Zwickelbier</option>
+            <option value="Kölsch">Kölsch</option>
+            <option value="Kristalweizen">Kristalweizen</option>
+            <option value="Lambic - Fruit">Lambic - Fruit</option>
+            <option value="Lambic - Unblended">Lambic - Unblended</option>
+            <option value="Light Lager">Light Lager</option>
+            <option value="Maibock / Helles Bock">Maibock / Helles Bock</option>
+            <option value="Märzen / Oktoberfest">Märzen / Oktoberfest</option>
+            <option value="Milk / Sweet Stout">Milk / Sweet Stout</option>
+            <option value="Munich Dunkel Lager">Munich Dunkel Lager</option>
+            <option value="Munich Helles Lager">Munich Helles Lager</option>
+            <option value="Oaked Bastard">Oaked Bastard</option>
+            <option value="Oatmeal Stout">Oatmeal Stout</option>
+            <option value="Old Ale">Old Ale</option>
+            <option value="Pumpkin Ale">Pumpkin Ale</option>
+            <option value="Quadrupel (Quad)">Quadrupel (Quad)</option>
+            <option value="Rauchbier">Rauchbier</option>
+            <option value="Roggenbier">Roggenbier</option>
+            <option value="Russian Imperial Stout">Russian Imperial Stout</option>
+            <option value="Rye Beer">Rye Beer</option>
+            <option value="Sahti">Sahti</option>
+            <option value="Saison / Farmhouse Ale">Saison / Farmhouse Ale</option>
+            <option value="Schwarzbier">Schwarzbier</option>
+            <option value="Scotch Ale / Wee Heavy">Scotch Ale / Wee Heavy</option>
+            <option value="Scottish Ale">Scottish Ale</option>
+            <option value="Smoked Beer">Smoked Beer</option>
+            <option value="Stone 11th Anniversary Ale">Stone 11th Anniversary Ale</option>
+            <option value="Stone Ruination Tenth Anniversary IPA">Stone Ruination Tenth Anniversary IPA</option>
+            <option value="Tripel">Tripel</option>
+            <option value="Victory At Sea Imperial Coffee Porter">Victory At Sea Imperial Coffee Porter</option>
+            <option value="Vienna Lager">Vienna Lager</option>
+            <option value="Weizenbock">Weizenbock</option>
+            <option value="Wheatwine">Wheatwine</option>
+            <option value="Winter Warmer">Winter Warmer</option>
+            <option value="Witbier">Witbier</option>
+          </select>
+        </div>
       </div>
     </div>
-  </div>
+    <br>
 
+    <div class="row">
+      <div class="small-10 large-centered columns">
+        <p>
+          <label for="amount-ibu" style="color:#D00;">IBU range:</label>
+          <input type="text" id="amount-ibu" readonly style="border:0; color:#999; font-weight:bold;">
+        </p>
+        <div id="slider-range-ibu"></div>
+      </div>
+    </div>
+    <br>
+
+    <div class="row">
+      <div class="small-10 large-centered columns">
+        <p>
+          <label for="amount-abv" style="color:#D00;">ABV range:</label>
+          <input type="text" id="amount-abv" readonly style="border:0; color:#999; font-weight:bold;">
+        </p>
+        <div id="slider-range-abv"></div>
+      </div>
+    </div>
+    <br>
+
+    <div class="row">
+      <div class="small-10 large-centered columns">
+        <a href="#2"><h3 style="color:#D00;">Results</h3></a>
+        <div class="row" id="results" style="height:40vh;overflow-y: auto;color:#999;">
+          <%= render "results" %>
+        </div>
+      </div>
+    </div>
+    <a href="#2"><div style="height:50px;width:100px;background-color:#FFF;position:absolute;px;right:0px;bottom:0px;line-height:50px;vertical-align:middle;text-align:center;">See Results..</div></a>
+
+  </div>
+</div>
+<div id="2" style="height:100vh;width:100%;background-color:#007095;">
+  2
+  <a href="#3"><div style="height:50px;width:100px;background-color:#F00;position:absolute;right:0px;margin-top:93.19vh;line-height:50px;vertical-align:middle;text-align:center;">Next..</div></a>
+</div>
+<div id="3" style="height:100vh;width:100%;background-color:#F08A24;">
+  3
+  <a href="#4"><div style="height:50px;width:100px;background-color:#F00;position:absolute;right:0px;margin-top:93.19vh;line-height:50px;vertical-align:middle;text-align:center;">Next..</div></a>
+</div>
+<div id="4" style="height:100vh;width:100%;background-color:#94cde7;">
+  4
+  <a href="#1"><div style="height:50px;width:100px;background-color:#F00;position:absolute;right:0px;margin-top:93.19vh;line-height:50px;vertical-align:middle;text-align:center;">Go To Top..</div></a>
 </div>
 
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
