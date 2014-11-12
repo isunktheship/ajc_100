@@ -17,7 +17,7 @@
     <% @beers.each do |beer| %>
       <tr>
         <td><%= beer.name %></td>
-        <td><%= beer.brewery_id %></td>
+        <td><%= beer.brews.first.brewery.first.name %></td>
         <td><%= beer.style %></td>
         <td><%= beer.abv %></td>
         <td><%= beer.ibu %></td>
