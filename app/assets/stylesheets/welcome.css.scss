@@ -67,3 +67,42 @@ h1 {
   font-size:4vw;
 }
      */
+html, body {
+  margin:0;
+  padding:0;
+  overflow:hidden;
+}
+
+.frame{
+  position:relative;
+  height:100vh;
+  width:100%;
+}
+
+.anchor-link {
+  position:absolute;
+  bottom:0;
+  right: 0;
+  background-color:none;
+  color:white;
+  height:60px;
+  width:80px;
+  line-height:60px;
+  text-align:center;
+}
+
+.red {
+  background-color:red;
+}
+.orange {
+  background-color:orange;
+}
+.yellow {
+  background-color:yellow;
+}
+.green {
+  background-color:green;
+}
+.blue {
+  background-color:blue;
+}
