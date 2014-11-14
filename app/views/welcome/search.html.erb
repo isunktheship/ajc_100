@@ -1,6 +1,27 @@
-<% @breweries.each do |row| %>
-  <%= row[0] %> || <%= row[3]%><br>
+<% if false then %>
+  <% @breweries.each do |row| %>
+    <%= row[0] %> || <%= row[3]%><br>
+  <% end %>
 <% end %>
+
+<table>
+  <tr>
+    <td>Brewery</td>
+    <td>Beer</td>
+    <td>Style</td>
+    <td>ABV</td>
+    <td>IBU</td>
+  </tr>
+<% @beers.each do |row| %>
+    <tr>
+      <td><%= row[0] %></td>
+      <td><%= row[1] %></td>
+      <td><%= row[2] %></td>
+      <td><%= row[3] %></td>
+      <td><%= row[4] %></td>
+    </tr>
+<% end %>
+</table>
 <%= javascript_tag do %>
   clearMarkers();
   breweries_2 = <%= @breweries_json %>;

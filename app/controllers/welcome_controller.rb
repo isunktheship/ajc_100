@@ -55,6 +55,14 @@ class WelcomeController < ApplicationController
         where("beers.abv <= #{abv_high}").
         group("breweries.name").select("breweries.name as brewery_name, breweries.latitude as brewery_latitude, breweries.longitude as brewery_longitude, count(beers.id) as beer_count").order("brewery_name")
 
+    @beer_results = Brewery.joins(:beers).
+        where("beers.style like '%#{style}%'").
+        where("beers.ibu >= #{ibu_low}").
+        where("beers.ibu <= #{ibu_high}").
+        where("beers.abv >= #{abv_low}").
+        where("beers.abv <= #{abv_high}").
+        select("breweries.name as brewery_name, beers.name as beer_name, beers.ibu as beer_ibu, beers.abv as beer_abv, beers.style as beer_style").order("brewery_name")
+
 
     @breweries = []
     @results.each do |x|
@@ -62,7 +70,14 @@ class WelcomeController < ApplicationController
       @breweries.push(row)
     end
 
+    @beers = []
+    @beer_results.each do |x|
+      row = [x.brewery_name, x.beer_name, x.beer_style, x.beer_abv, x.beer_ibu]
+      @beers.push(row)
+    end
+
     @breweries_json = @breweries.to_json.to_s.html_safe
+    @beers_json = @beers.to_json.to_s.html_safe
 
     render layout: false
 

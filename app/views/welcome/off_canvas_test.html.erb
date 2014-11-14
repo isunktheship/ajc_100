@@ -421,7 +421,8 @@
   </div>
 </div>
 <div id="2" class="frame red">
-  2
+  <div id="beer-list" style="height:100%;overflow-y:scroll;">
+  </div>
   <a href="#3"><div class="anchor-link">Next..</div></a>
 </div>
 <div id="3" class="frame orange">
@@ -648,6 +649,7 @@
       },
       success: function(data) {
         $("#results").html(data);
+
       }
     });
   }
