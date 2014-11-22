@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Brand</th>
       <th>Homepage</th>
       <th>Latitude</th>
       <th>Longitude</th>
@@ -16,6 +17,7 @@
     <% @breweries.each do |brewery| %>
       <tr>
         <td><%= brewery.name %></td>
+        <td><%= brewery.brand.name %></td>
         <td>
           <% if brewery.homepage then %>
             <%= link_to brewery.homepage, brewery.homepage %>

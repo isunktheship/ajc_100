@@ -33,6 +33,7 @@ class BreweriesController < ApplicationController
 
   # GET /breweries/1/edit
   def edit
+    @brands = Brand.all
   end
 
   # POST /breweries

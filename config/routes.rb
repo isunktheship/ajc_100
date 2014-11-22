@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :brands
+
   get '1' => 'welcome#off_canvas_test'
   get '2' => 'welcome#asides'
   get '3' => 'welcome#twitter_01'

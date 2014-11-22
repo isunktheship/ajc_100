@@ -91,6 +91,8 @@ class WelcomeController < ApplicationController
     @breweries = Brewery.all.order("name ASC")
     @results = Brewery.joins(:beers).group("breweries.name").select("breweries.name as brewery_name, count(beers.id) as beer_count").order("brewery_name")
 
+
+    render layout: 'welcome'
     #puts "++++++++++++++++++++++++++++++++++++++++++++"
     #puts @results
     #puts "++++++++++++++++++++++++++++++++++++++++++++"

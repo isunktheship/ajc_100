@@ -15,9 +15,12 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+  <% brand_array = Brand.all.map { |brand| [brand.name, brand.id] } %>
   <div class="field">
-    <%= f.label :brewery_id %><br>
-    <%= f.number_field :brewery_id %>
+    <%= f.label :brand %><br>
+    <select>
+      <%= options_for_select(brand_array, @beer.brand_id) %>
+    </select>
   </div>
   <div class="field">
     <%= f.label :style %><br>
