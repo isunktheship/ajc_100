@@ -16,13 +16,16 @@
     <%= f.text_field :name %>
   </div>
 
+
   <% brand_array = Brand.all.map { |brand| [brand.name, brand.id] } %>
-  <div class="field">
-    <%= f.label :brand %><br>
-    <select>
-      <%= options_for_select(brand_array, @brewery.brand_id) %>
-    </select>
-  </div>
+  <%= fields_for @brewery.brand do |b| %>
+    <div class="field">
+      <%= b.label :brand %><br>
+      <%= select_tag(:id, options_for_select(brand_array, :id)) %>
+      <%= select(:person, :city_id, [['Lisbon', 1], ['Madrid', 2], ...]) %>
+    </div>
+  <% end %>
+
   <div class="field">
     <%= f.label :homepage %><br>
     <%= f.text_field :homepage %>
